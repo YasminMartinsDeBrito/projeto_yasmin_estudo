@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "module": "Node16",
+        "target": "ES2021",
+        "moduleResolution": "node16"
+    },
+    "exclude": ["node_modules"]
+}

@@ -1,0 +1,6 @@
+node_modules
+.env
+token.txt
+log/*.log
+log/importzoho
+.cache/*
