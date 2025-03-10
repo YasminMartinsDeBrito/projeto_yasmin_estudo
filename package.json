@@ -2,11 +2,11 @@
   "name": "projetos-yasmin-estudo",
   "version": "1.0.0",
   "description": "testando projetos",
-  "main": "src/index.js",
+  "main": "src/server.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/index.js",
-    "start": "node src/index.js"
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
   },
   "keywords": [],
   "author": "yasmin martins de brito marcelino",

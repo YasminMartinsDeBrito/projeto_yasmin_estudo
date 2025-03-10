@@ -1,24 +1,28 @@
-import fastify from 'fastify';
-import userRoutes from './routes/users.js';
+//import fastify from 'fastify';
+import express from 'express'
+import cors from 'cors'
+import helmet from 'helmet';
+import xssClear from 'xss-clean';
+import morgan from 'morgan';
+import dotenv from 'dotenv';
 
-const app = fastify({logger: true})
-const PORT = 3000
+import sequelize from './config/database.js';
 
+//Outras pastas
+import routes from './routes/routes.js';
+import errorHandler from './middlewares/errorHandler.js';
 
-app.register(userRoutes) // ✅ Registrar rotas de usuários
+dotenv.config()
+const app = express()
 
-// ✅ Rota principal
-app.get('/', async( request, reply) => {
-    return {message: 'Servidor fastify rodando com fastify'}
-})
+//Middlewares de segurança
+app.use(helmet())
+app.use(cors())
+app.use(xssClear())
+app.use(express.json())
+app.use(morgan('dev'))
 
-const start = async () => {
-    try{
-        await app.listen({port: PORT, host: '0.0.0.0'});
-        console.log(`Servidor rodando em http://localhost:${PORT}`)
-    }catch(err){
-        console.log(err)
-        process.exit(1)
-    }
-}
-start()
+app.use('/api', routes);
+app.use(errorHandler)
+
+export default app;
